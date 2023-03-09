@@ -1,0 +1,339 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.fa-trash,
+.fa-notes-medical,
+.fa-hand-fist,
+.fa-x,
+.fa-heart{
+    pointer-events:none;
+}
+
+
+* {box-sizing: border-box;}
+
+.fa-shield-halved {
+    color:yellow;
+}
+
+input:focus,
+input:hover,
+button {
+    outline: none;
+    cursor:pointer;
+}
+
+body {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    background-image:url("img/wp5902268.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-blend-mode: multiply;
+    display:grid;
+    user-select:none;
+    color:#FFF;
+}
+
+.test {
+    background: rgb(18,23,27,0.86);
+}
+
+.container {
+    text-align: center;
+    padding:1rem;
+    z-index:1;
+    min-height:100dvh;
+}
+
+.add-enemy {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:.5rem;
+}
+ 
+.add-enemy-btn:hover,
+.add-enemy-btn:focus,           
+.add-enemy input:hover,
+.add-enemy input:focus {
+    border:1px solid red;   
+}
+
+.delete-all-btn:hover,
+.delete-all-btn:focus {
+    border:1px solid white;
+}
+
+.add-enemy::after {
+    content:"";
+    display:block;
+    height:1px;
+    width:100%;
+    margin:0 auto;
+    grid-column: 1/-1;
+    background-color: #FFF;
+    margin-top:1rem;
+}
+
+.add-enemy input,
+.add-enemy button {
+    height:30px;
+    width:75%;
+    margin:0 auto;
+    border:none;
+    border-radius: 3px;
+}
+
+.delete-all-btn {
+    color:#FFF;
+    background-color: red;
+    border:1px red solid;
+    border-radius: 3px;
+
+}
+
+.add-enemy-bock {
+    display:grid;
+}
+
+.enemies {
+    display:grid;
+    grid-template-columns: 1fr;
+}
+
+.enemy {
+    width:100%;
+    border: #FFF 1px solid;
+    border-radius: 10px;
+    margin-top:1rem;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "name name . armor"
+                        "bar bar bar bar"
+                        "dmg-heal dmg-heal . trash";
+    padding:1rem;
+    animation-name: fade-in;
+    animation-duration: 0.5s; 
+}
+
+.enemy h3 {
+    margin:0;
+}
+
+.enemy-name {
+    text-align: left;
+    grid-area: name;
+}
+
+.enemy-ac {
+    grid-area: armor;
+    margin-left:auto;
+}
+
+.health-bar {
+    margin-top:1rem;
+    margin-bottom:1rem;
+    height:40px;
+    background-color: gray;
+    border-radius: 3px;
+    grid-area: bar;
+    display:grid;
+    justify-content: center;
+    align-items:center;
+    font-weight:700;
+    font-size:1.2rem;
+}
+
+.health-bar span {
+    z-index:2;
+}
+
+.current-health-bar {
+    margin-top:1rem;
+    margin-bottom:1rem;
+    width:0%;
+    height:40px;
+    border-radius: 3px;
+    grid-area: bar;
+    transition: width 1s ease-in-out;
+    background: rgb(56,203,1);
+    background: linear-gradient(90deg, rgba(56,203,1,1) 0%, rgba(4,148,1,1) 100%);  
+}
+
+.dmg-heal {
+    grid-area: dmg-heal;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height:45px;
+    max-width:250px;
+    cursor: pointer;
+}
+
+.dmg-heal input {
+    width:100%;
+    border: none;
+    text-align: center; 
+}
+
+.heal-btn,
+.dmg-btn {
+    display:grid;
+    justify-content: center;
+    align-items: center;
+    border-left:1px solid gray;
+    border-top:1px solid gray;
+    border-bottom:1px solid gray;
+    font-size:1.3rem;
+    transition:font-size .1s;
+}
+
+.heal-btn {
+    border-right:1px solid gray;
+    
+}
+
+.heal-btn:hover,
+.dmg-btn:hover  {
+    font-size:1.6rem;
+}
+
+.delete-enemy {
+    grid-area:trash;
+    margin-left:auto;
+    margin-top:auto;
+    z-index: 3;
+}
+
+.delete-enemy button {
+    height:45px;
+    width:45px;
+    font-size:1.3rem;
+}
+
+.death-screen {
+    background-color: rgb(29, 26, 26);
+    grid-row:1/-1;
+    grid-column:1/-1;
+    width:0;
+    height:calc(100% + 2rem);
+    overflow-y: auto;
+    margin:-1rem;
+    border-radius: 10px;
+    z-index: 2; 
+    display:grid;
+    justify-content: center;
+    align-items: center;
+    transition-property: width, height;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+}
+
+.death-screen span {
+    color:red
+}
+
+.death-screen h2 {
+    margin:0;
+}
+
+.ds-name {
+    display:none;
+    margin-bottom:.7rem;
+}
+
+.enemy-res {
+    grid-area:dmg-heal;
+    margin-top:auto;
+    margin-right:auto;
+    z-index: 3;
+    display:none;
+}
+
+.enemy-res button {
+    height:45px;
+    width:45px;
+    font-size:1.3rem;
+}
+
+.appear {
+    animation-name:fade-in;
+    animation-duration: .5s;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity:0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity:1;
+        transform: translateY(0px);
+    }
+}
+
+.disappear {
+    animation-name: fade-out;
+    animation-duration: 0.75s; 
+}
+
+@keyframes fade-out {
+    0% {
+        opacity:1;
+    }
+    100% {
+        opacity:0;
+    }
+}
+
+.button-fade {
+    animation-name:btn-slide-in;
+    animation-duration:.3s;
+}
+
+@keyframes btn-slide-in {
+    0% {
+        opacity:0;
+        transform: translateX(-10px);
+    }
+    100% {
+        opacity:1;
+        transform: translateX(0px);
+    }
+}
+
+
+@media (min-width: 570px) {
+    .add-enemy {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .enemies {
+        grid-template-columns: 1fr 1fr;
+        grid-gap:1rem;
+    }
+
+    .container {
+        margin:0 auto;
+        max-width:940px;
+        min-height:100vh;
+    }
+}
+
+@media (min-width:940px) {
+    .add-enemy {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+
+
+
+
+
+
+
+
