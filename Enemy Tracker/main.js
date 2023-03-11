@@ -85,6 +85,9 @@ function combat(info, action) {
     let input = "inputNr" + info.parentElement.dataset.id
     let number = parseInt(document.getElementById(input).value)
     if(number) {
+        if(number < 0) {
+            number = 0
+        }
         for(let enemy of allEnemies){
             if(enemy.creatureId == info.parentElement.dataset.id) {
                 if(action=="attack") {
